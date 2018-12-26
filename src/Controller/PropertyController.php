@@ -2,19 +2,43 @@
 namespace App\Controller;
 
 use App\Entity\Property;
+use App\Repository\PropertyRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response; // Pour la response de la méthode
+use Doctrine\Common\Persistence\ObjectManager;  // pour l'entity manager
 use Twig\Environment;
 
 class PropertyController extends AbstractController {
 
     /**
+     * @var PropertyRepository
+     */
+    private $repository;
+
+    /**
+     * @var ObjectManager
+     */
+    private $em;
+
+    /**
+     * Constructor
+     * @param PropertyRepository $repository
+     * @param ObjectManager $em
+     */
+    public function __construct(PropertyRepository $repository,ObjectManager $em) {
+        $this->repository=$repository; // On injecte le PropertyRepository avec l'autowiring
+        $this->em=$em; // On inject l'entity manager
+    }
+    
+    /**
      * Affiche la liste des biens disponibles.
      * @return Response
      */
+    // public function index(PropertyRepository $repository):Response { // On peut injecter le PropertyRepository directement dans la méthode index
     public function index():Response {
 
+        /*
         $property=new Property();
         $property->setTitle('Mon premier bien')
             ->setPrice(200000)
@@ -29,8 +53,20 @@ class PropertyController extends AbstractController {
             ->setPostalCode('34000');
         $em=$this->getDoctrine()->getManager(); // Get Entity Manager
         $em->persist($property);
-        $em->flush();
+        $em->flush(); // COMMIT
+        */
 
+        /*
+        $repository=$this->getDoctrine()->getRepository(Property::class); // Méthode manuelle pour récupèrer le propertyRepository
+        */
+        
+        //$property=$this->repository->find(1);
+        //$property=$this->repository->findAll();
+        //$property=$this->repository->findOneBy(['floor'=>4]);
+
+        //$property=$this->repository->findAllVisible(); // On récupère toutes les properties non vendues (visible)
+        //dump($property);
+        
         return $this->render('property/index.html.twig',[
             'current_menu'=> 'properties'
         ]);

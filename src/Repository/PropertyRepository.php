@@ -6,6 +6,8 @@ use App\Entity\Property;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * @method Property|null find($id, $lockMode = null, $lockVersion = null)
  * @method Property|null findOneBy(array $criteria, array $orderBy = null)
@@ -47,4 +49,34 @@ class PropertyRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * Retoune tous les biens qui n'ont pas été vendus
+     * @return Property[]
+     */
+    public function findAllVisible(): array {
+        return $this->findVisibleQuery()
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Retourne les 4 derniers biens ajoutés
+     * @return Property[]
+     */
+    public function findLatest(): array {
+        return $this->findVisibleQuery()
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Permet d'éviter de se répéter. Retourne un where pour les biens non vendus
+     * @return QueryBuilder
+     */
+    private function findVisibleQuery(): QueryBuilder {
+        return $this->createQueryBuilder('p')
+            ->where('p.sold = false');
+    }
 }
