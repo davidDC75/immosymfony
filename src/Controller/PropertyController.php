@@ -77,9 +77,16 @@ class PropertyController extends AbstractController {
      * @param integer $id
      * @return Response
      */
-    public function show($slug,$id):Response {
-        
+    public function show($slug,$id):Response { // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
         $property=$this->repository->find($id);
+
+        if ($property->getSlug()!==$slug) {
+            return $this->redirectToRoute('property.show',[
+                'id'=>$property->getId(),
+                'slug'=>$property->getSlug()
+            ],301);
+        }
+
         return $this->render('property/show.html.twig', [
             'current_menu'=>'properties',
             'property'=>$property
