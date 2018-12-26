@@ -72,4 +72,19 @@ class PropertyController extends AbstractController {
         ]);
     }
 
+    /**
+     * @param string $slug
+     * @param integer $id
+     * @return Response
+     */
+    public function show($slug,$id):Response {
+        
+        $property=$this->repository->find($id);
+        return $this->render('property/show.html.twig', [
+            'current_menu'=>'properties',
+            'property'=>$property
+        ]);
+
+    }
+
 }
