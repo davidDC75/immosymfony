@@ -34,7 +34,7 @@ class PropertyType extends AbstractType
             ->add('floor')
             ->add('price')
             ->add('heat',ChoiceType::class,[
-                'choices' => array_flip(Property::HEAT)
+                'choices' => $this->getHeatChoices()
             ])
             ->add('city')
             ->add('address')
@@ -50,5 +50,10 @@ class PropertyType extends AbstractType
             'data_class' => Property::class,
             'translation_domain' => 'forms'
         ]);
+    }
+
+    private function getHeatChoices()
+    {
+        return array_flip(Property::HEAT);
     }
 }
