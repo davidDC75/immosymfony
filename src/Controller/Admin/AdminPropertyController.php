@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
+
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +25,7 @@ class AdminPropertyController extends AbstractController
     private $em;
 
     /**
+     * Constructeur
      * @param \App\Repository\PropertyRepository $repository
      * @param \Doctrine\Common\Persistence\ObjectManager $em
      */
@@ -34,6 +36,7 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
+     * Liste l'ensemble des biens
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index():Response
@@ -43,7 +46,9 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
+     * Ajoute un nouveau bien
      * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function new(Request $request):Response
     {
@@ -51,7 +56,8 @@ class AdminPropertyController extends AbstractController
         $form=$this->createForm(PropertyType::class,$property);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $this->em->persist($property); // Pour l'ajout l'em ne track pas alors il faut faire un persist (différence avec edit plus bas)
             $this->em->flush();
             $this->addFlash('success','Bien créé avec succès');
@@ -65,6 +71,7 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
+     * Modifie un bien
      * @param \App\Entity\Property $property
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -86,13 +93,15 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
+     * Supprimer un bien
      * @param \App\Entity\Property $property
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function delete(Property $property, Request $request):Response
     {
-        if ( $this->isCsrfTokenValid('delete'.$property->getId(),$request->get('_token')) ) {
+        if ( $this->isCsrfTokenValid('delete'.$property->getId(),$request->get('_token')) )
+        {
             $this->em->remove($property);
             $this->em->flush();
             $this->addFlash('success','Bien supprimé avec succès');

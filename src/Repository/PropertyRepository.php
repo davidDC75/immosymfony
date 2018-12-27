@@ -52,9 +52,10 @@ class PropertyRepository extends ServiceEntityRepository
 
     /**
      * Retoune tous les biens qui n'ont pas été vendus
-     * @return Property[]
+     * @return \App\Entity\Property[]
      */
-    public function findAllVisible(): array {
+    public function findAllVisible(): array
+    {
         return $this->findVisibleQuery()
             ->getQuery()
             ->getResult();
@@ -62,9 +63,10 @@ class PropertyRepository extends ServiceEntityRepository
 
     /**
      * Retourne les 4 derniers biens ajoutés
-     * @return Property[]
+     * @return \App\Entity\Property[]
      */
-    public function findLatest(): array {
+    public function findLatest(): array
+    {
         return $this->findVisibleQuery()
             ->setMaxResults(4)
             ->getQuery()
@@ -73,9 +75,10 @@ class PropertyRepository extends ServiceEntityRepository
 
     /**
      * Permet d'éviter de se répéter. Retourne un where pour les biens non vendus
-     * @return QueryBuilder
+     * @return \Doctrine\ORM\QueryBuilder
      */
-    private function findVisibleQuery(): QueryBuilder {
+    private function findVisibleQuery(): QueryBuilder
+    {
         return $this->createQueryBuilder('p')
             ->where('p.sold = false');
     }

@@ -90,8 +90,12 @@ class Property
      */
     private $created_at;
 
-    public function __construct() {
-        // Rempli la propriété created_at automatiquement à la construction de l'objet Property
+    /**
+     * Constructeur
+     * Rempli la propriété created_at lors de l'instanciation d'un nouvel objet Property
+     */
+    public function __construct()
+    {
         $this->created_at=new \DateTime();
     }
 
@@ -112,7 +116,12 @@ class Property
         return $this;
     }
 
-    public function getSlug(): string {
+    /**
+     * Retourne le slug d'un titre
+     * @return string
+     */
+    public function getSlug(): string
+    {
         //$slugify = new Slugify();
         //return $slugify->slugify($this->$title);
         return (new Slugify())->slugify($this->title);
@@ -190,7 +199,12 @@ class Property
         return $this;
     }
 
-    public function getFormattedPrice(): string {
+    /**
+     * Retourne le prix formaté
+     * @return string
+     */
+    public function getFormattedPrice(): string
+    {
         return number_format($this->price,0,'',' ');
     }
 

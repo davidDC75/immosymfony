@@ -1,31 +1,30 @@
 <?php
 namespace App\Controller;
 
-use Twig\Environment;
-
-
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;  // pour l'entity manager
 use Symfony\Component\HttpFoundation\Response; // Pour la response de la méthode
 
-class PropertyController extends AbstractController {
+class PropertyController extends AbstractController
+{
 
     /**
-     * @var PropertyRepository
+     * @var \App\Repository\PropertyRepository
      */
     private $repository;
 
     /**
-     * @var ObjectManager
+     * @var \Doctrine\Common\Persistence\ObjectManager
      */
     private $em;
 
     /**
-     * Constructor
-     * @param PropertyRepository $repository
-     * @param ObjectManager $em
+     * Constructeur
+     * @param \App\Repository\PropertyRepository $repository
+     * @param \Doctrine\Common\Persistence\ObjectManager $em
      */
     public function __construct(PropertyRepository $repository,ObjectManager $em) {
         $this->repository=$repository; // On injecte le PropertyRepository avec l'autowiring
@@ -74,6 +73,7 @@ class PropertyController extends AbstractController {
     }
 
     /**
+     * Affiche un bien
      * @param string $slug
      * @param integer $id
      * @return Response
@@ -81,7 +81,8 @@ class PropertyController extends AbstractController {
     public function show($slug,$id):Response { // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
         $property=$this->repository->find($id);
 
-        if ($property->getSlug()!==$slug) {
+        if ($property->getSlug()!==$slug)
+        {
             return $this->redirectToRoute('property.show',[
                 'id'=>$property->getId(),
                 'slug'=>$property->getSlug()
@@ -92,7 +93,6 @@ class PropertyController extends AbstractController {
             'current_menu'=>'properties',
             'property'=>$property
         ]);
-
     }
 
 }
