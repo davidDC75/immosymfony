@@ -1,8 +1,6 @@
 <?php
 namespace App\Controller;
 
-// TEST POUR VOIR SI LE FICHIER EST REGARDER APRES UN CHANGEMENT DE BRANCHE (cette ligne est dans la branche Symfony4video4)
-
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
 
