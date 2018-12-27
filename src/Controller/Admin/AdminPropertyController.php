@@ -54,6 +54,7 @@ class AdminPropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($property); // Pour l'ajout l'em ne track pas alors il faut faire un persist (différence avec edit plus bas)
             $this->em->flush();
+            $this->addFlash('success','Bien créé avec succès');
             return $this->redirectToRoute('admin.property.index');
         }
 
@@ -71,14 +72,13 @@ class AdminPropertyController extends AbstractController
     public function edit(Property $property, Request $request):Response
     {
         $form=$this->createForm(PropertyType::class,$property);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
+            $this->addFlash('success','Bien modifié avec succès');
             return $this->redirectToRoute('admin.property.index');
         }
-
         return $this->render('admin/property/edit.html.twig',[
             'property'=>$property,
             'form'=>$form->createView()
@@ -95,6 +95,7 @@ class AdminPropertyController extends AbstractController
         if ( $this->isCsrfTokenValid('delete'.$property->getId(),$request->get('_token')) ) {
             $this->em->remove($property);
             $this->em->flush();
+            $this->addFlash('success','Bien supprimé avec succès');
         }
         return $this->redirectToRoute('admin.property.index');
     }
