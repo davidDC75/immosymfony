@@ -6,6 +6,7 @@ use App\Entity\Property;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class PropertyType extends AbstractType
 {
@@ -32,7 +33,9 @@ class PropertyType extends AbstractType
             ->add('bedrooms')
             ->add('floor')
             ->add('price')
-            ->add('heat')
+            ->add('heat',ChoiceType::class,[
+                'choices' => array_flip(Property::HEAT)
+            ])
             ->add('city')
             ->add('address')
             ->add('postal_code')
