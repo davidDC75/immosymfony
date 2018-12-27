@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+// TEST POUR VOIR SI LE FICHIER EST REGARDER APRES UN CHANGEMENT DE BRANCHE (cette ligne est dans la branche Symfony4video4)
+
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
 
@@ -30,7 +32,7 @@ class PropertyController extends AbstractController {
         $this->repository=$repository; // On injecte le PropertyRepository avec l'autowiring
         $this->em=$em; // On inject l'entity manager
     }
-    
+
     /**
      * Affiche la liste des biens disponibles.
      * @return Response
@@ -59,14 +61,14 @@ class PropertyController extends AbstractController {
         /*
         $repository=$this->getDoctrine()->getRepository(Property::class); // Méthode manuelle pour récupèrer le propertyRepository
         */
-        
+
         //$property=$this->repository->find(1);
         //$property=$this->repository->findAll();
         //$property=$this->repository->findOneBy(['floor'=>4]);
 
         //$property=$this->repository->findAllVisible(); // On récupère toutes les properties non vendues (visible)
         //dump($property);
-        
+
         return $this->render('property/index.html.twig',[
             'current_menu'=> 'properties'
         ]);
