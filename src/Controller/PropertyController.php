@@ -1,13 +1,14 @@
 <?php
 namespace App\Controller;
 
+use Twig\Environment;
+
+
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response; // Pour la response de la méthode
 use Doctrine\Common\Persistence\ObjectManager;  // pour l'entity manager
-use Twig\Environment;
+use Symfony\Component\HttpFoundation\Response; // Pour la response de la méthode
 
 class PropertyController extends AbstractController {
 
