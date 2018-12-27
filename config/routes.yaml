@@ -25,8 +25,15 @@ admin.property.edit:
     controller: App\Controller\Admin\AdminPropertyController::edit
     requirements:
         id: '[0-9]*'
+    methods: GET|POST
 
 admin.property.new:
     path: /admin/bien/create
     controller: App\Controller\Admin\AdminPropertyController::new
 
+admin.property.delete:
+    path: /admin/{id}/delete
+    controller: App\Controller\Admin\AdminPropertyController::delete
+    requirements:
+        id: '[0-9]*'
+    methods: DELETE

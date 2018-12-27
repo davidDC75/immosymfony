@@ -84,4 +84,18 @@ class AdminPropertyController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
+
+    /**
+     * @param \App\Entity\Property $property
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delete(Property $property, Request $request):Response
+    {
+        if ( $this->isCsrfTokenValid('delete'.$property->getId(),$request->get('_token')) ) {
+            $this->em->remove($property);
+            $this->em->flush();
+        }
+        return $this->redirectToRoute('admin.property.index');
+    }
 }
