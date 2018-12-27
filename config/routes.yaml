@@ -26,3 +26,7 @@ admin.property.edit:
     requirements:
         id: '[0-9]*'
 
+admin.property.new:
+    path: /admin/bien/create
+    controller: App\Controller\Admin\AdminPropertyController::new
+
