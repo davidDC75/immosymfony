@@ -3,11 +3,20 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
+ * @UniqueEntity(
+ *      fields="title",
+ *      message="Ce titre existe déjà."
+ * )
+ * @UniqueEntity(
+ *      fields="address",
+ *      message="Cette adresse est déjà utilisée."
+ * )
  */
 class Property
 {
@@ -27,6 +36,12 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 200,
+     *      minMessage = "Le titre doit contenir au minimum {{ limit }} caractères.",
+     *      maxMessage = "Le titre ne doit pas dépasser {{ limit }} caractères."
+     * )
      */
     private $title;
 
@@ -37,26 +52,56 @@ class Property
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 30,
+     *      max = 1500,
+     *      minMessage = "La surface doit être supérieure ou égale à {{ limit }} m².",
+     *      maxMessage = "La surface doit être inférieure ou égale à {{ limit }} m²."
+     * )
      */
     private $surface;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 30,
+     *      minMessage = "Le nombre de pièces doit être supérieur ou égal à {{ limit }}.",
+     *      maxMessage = "Le nombre de pièces doit être inférieur ou égal à {{ limit }}."
+     * )
      */
     private $rooms;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 30,
+     *      minMessage = "Le nombre de chambre doit être inférieur ou égal à {{ limit }}.",
+     *      maxMessage = "Le nombre de chambre doit être supérieur ou égal à {{ limit }}."
+     * )
      */
     private $bedrooms;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 50,
+     *      minMessage = "L'étage doit être supérieur ou égal à {{ limit }}.",
+     *      maxMessage = "L'étage doit être inférieur ou égal à {{ limit }}."
+     * )
      */
     private $floor;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 10000,
+     *      max = 100000000,
+     *      minMessage = "Le prix doit être supérieur ou égal à {{ limit }} euros.",
+     *      maxMessage = "Le prix doit être inférieur ou égal à {{ limit }} euros."
+     * )
      */
     private $price;
 
@@ -77,6 +122,11 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     *      pattern="/^[0-9]{5}$/",
+     *      match=true,
+     *      message="Le code postal doit contenir 5 chiffres."
+     * )
      */
     private $postal_code;
 
