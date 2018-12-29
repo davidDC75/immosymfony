@@ -2,6 +2,7 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+# Pour le site web
 home:
     path: /
     controller: App\Controller\HomeController::index
@@ -16,6 +17,7 @@ property.show:
     requirements:
         slug: '[a-z0-9\-]*'
 
+# Pour la partie administration
 admin.property.index:
     path: /admin
     controller: App\Controller\Admin\AdminPropertyController::index
@@ -37,3 +39,13 @@ admin.property.delete:
     requirements:
         id: '[0-9]*'
     methods: DELETE
+
+# Pour la partie login
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout
+
+
