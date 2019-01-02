@@ -5,6 +5,8 @@ use App\Entity\Property;
 use App\Form\PropertyType;
 
 use App\Repository\PropertyRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;  // pour l'entity manager
@@ -46,8 +48,13 @@ class PropertyController extends AbstractController
      * Affiche la liste des biens disponibles.
      * @return Response
      */
-    public function index():Response {
-        $properties=$this->repository->findAllVisible();
+    public function index(PaginatorInterface $paginator,Request $request):Response {
+        $properties=$paginator->paginate(
+            $this->repository->findAllVisibleQuery(), // Récupère la query
+            $request->query->getInt('page', 1), // Récupère $_GET['page'] et converti en int. Par défaut 1
+            12 // limit
+        );
+
         return $this->render('property/index.html.twig',[
             'current_menu'=> 'properties',
             'properties'=>$properties

@@ -2,11 +2,12 @@
 
 namespace App\Repository;
 
+use Doctrine\ORM\Query;
 use App\Entity\Property;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-
 use Doctrine\ORM\QueryBuilder;
+
+use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Property|null find($id, $lockMode = null, $lockVersion = null)
@@ -51,14 +52,13 @@ class PropertyRepository extends ServiceEntityRepository
     */
 
     /**
-     * Retoune tous les biens qui n'ont pas été vendus
-     * @return \App\Entity\Property[]
+     * Retourne tous les biens qui n'ont pas été vendus
+     * @return Query
      */
-    public function findAllVisible(): array
+    public function findAllVisibleQuery(): Query // On ne renvoit pas un résultat mais une query afin d'être utilisé avec le paginator
     {
         return $this->findVisibleQuery()
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
     }
 
     /**
