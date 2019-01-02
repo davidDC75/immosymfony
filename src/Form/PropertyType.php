@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PropertyType extends AbstractType
 {
@@ -16,13 +18,14 @@ class PropertyType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('surface')
-            ->add('rooms')
-            ->add('bedrooms')
-            ->add('floor')
+            ->add('surface',IntegerType::class,[])
+            ->add('rooms',IntegerType::class,[])
+            ->add('bedrooms',IntegerType::class,[])
+            ->add('floor',IntegerType::class,[])
             ->add('price',MoneyType::class, [
                 'currency'=>'EUR',
-                'scale'=>0
+                'scale'=>0,
+                'grouping'=>true
             ])
             ->add('heat',ChoiceType::class,[
                 'choices' => $this->getHeatChoices(),
@@ -31,7 +34,9 @@ class PropertyType extends AbstractType
             ->add('city')
             ->add('address')
             ->add('postal_code')
-            ->add('sold')
+            ->add('sold',CheckboxType::class,[
+                'help'=>'sold.help'
+            ])
             // ->add('created_at')
         ;
     }

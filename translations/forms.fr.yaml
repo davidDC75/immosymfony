@@ -10,6 +10,7 @@ City: Ville
 Address: Adresse
 Postal code: Code Postal
 Sold: Vendu
+sold.help: "Cochez cette case si le bien a été vendu"
 
 heattype:
     electric: "Électrique"
