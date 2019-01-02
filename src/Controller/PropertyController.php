@@ -100,17 +100,10 @@ class PropertyController extends AbstractController
         }
 
         // On récupère le type de chauffage
-        $tblHeat= [
-            0=>$this->translator->trans("heattype.electric",[],'forms'),
-            1=>$this->translator->trans("heattype.gas",[],'forms'),
-            2=>$this->translator->trans("heattype.fireplace",[],'forms')
-        ];
-
-
         return $this->render('property/show.html.twig', [
             'current_menu'=>'properties',
             'property'=>$property,
-            'heatType'=>$tblHeat[$property->getHeat()]
+            'heatType'=>$this->translator->trans(Property::HEAT[$property->getHeat()],[],'forms')
         ]);
     }
 

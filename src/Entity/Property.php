@@ -20,6 +20,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Property
 {
     /**
+     * HEAT
+     * @var array
+     */
+    const HEAT=[
+            0=> "heattype.electric",
+            1=>"heattype.gas",
+            2=>"heattype.fireplace"
+        ];
+    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")

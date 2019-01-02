@@ -28,7 +28,7 @@ class PropertyType extends AbstractType
                 'grouping'=>true
             ])
             ->add('heat',ChoiceType::class,[
-                'choices' => $this->getHeatChoices(),
+                'choices' => array_flip(Property::HEAT),
                 'choice_translation_domain' => 'forms'
             ])
             ->add('city')
@@ -49,12 +49,4 @@ class PropertyType extends AbstractType
         ]);
     }
 
-    public function getHeatChoices()
-    {
-        return [
-            "heattype.electric" => 0,
-            "heattype.gas" => 1,
-            "heattype.fireplace" => 2
-        ];
-    }
 }
