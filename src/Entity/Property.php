@@ -11,11 +11,11 @@ use Cocur\Slugify\Slugify;
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  * @UniqueEntity(
  *      fields="title",
- *      message="Ce titre existe déjà."
+ *      message="title.unique"
  * )
  * @UniqueEntity(
  *      fields="address",
- *      message="Cette adresse est déjà utilisée."
+ *      message="address.unique"
  * )
  */
 class Property

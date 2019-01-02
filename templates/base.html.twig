@@ -1,9 +1,10 @@
+{% trans_default_domain 'messages' %}
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}{% trans %}home.agency.name{% endtrans %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     {% block stylesheets %}{% endblock %}
@@ -11,7 +12,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="{{ path('home') }}">Agence Lorem Ipsum</a>
+        <a class="navbar-brand" href="{{ path('home') }}">{% trans %}navbar.agency.name{% endtrans %}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,20 +22,20 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}"
-                        href="{{ path('property.index') }}">Acheter</a>
+                        href="{{ path('property.index') }}">{% trans %}navbar.buy{% endtrans %}</a>
                 </li>
             </ul>
             <ul class="navbar-nav">
             {% if app.user %}
                 <li class="nav-item">
-                    <a href="{{ path('admin.property.index') }}" class="nav-link">Administration</a>
+                    <a href="{{ path('admin.property.index') }}" class="nav-link">{% trans %}navbar.admin.link{% endtrans %}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('logout') }}" class="nav-link">Se déconnecter</a>
+                    <a href="{{ path('logout') }}" class="nav-link">{% trans %}navbar.disconnect{% endtrans %}</a>
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a href="{{ path('login') }}" class="nav-link">Se connecter</a>
+                    <a href="{{ path('login') }}" class="nav-link">{% trans %}navbar.connect{% endtrans %}</a>
                 </li>
             {% endif %}
             </ul>

@@ -1,6 +1,7 @@
+{% trans_default_domain 'messages' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}Agence Lorem Ipsum{% endblock %}
+{% block title %}{% trans %}home.agency.name{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
@@ -13,8 +14,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Titre</th>
-                <th>Actions</th>
+                <th>{% trans %}admin.index.title{% endtrans %}</th>
+                <th>{% trans %}admin.index.action{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -22,12 +23,12 @@
             <tr>
                 <td>{{ property.title }}</td>
                 <td>
-                    <a href="{{ path('admin.property.edit', { id: property.id }) }}" class="btn btn-secondary">Éditer</a>
+                    <a href="{{ path('admin.property.edit', { id: property.id }) }}" class="btn btn-secondary">{% trans %}admin.index.button.edit{% endtrans %}</a>
                     <form method="POST" action="{{ path('admin.property.delete', { id: property.id }) }}" style="display: inline-block"
                         onsubmit="return confirm('Êtes-vous sûr ?')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">
-                        <button class="btn btn-danger">Supprimer</button>
+                        <button class="btn btn-danger">{% trans %}admin.index.button.delete{% endtrans %}</button>
                     </form>
                 </td>
             </tr>
@@ -36,7 +37,7 @@
     </table>
 
     <div class="text-right">
-        <a href="{{ path('admin.property.new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+        <a href="{{ path('admin.property.new') }}" class="btn btn-primary">{% trans %}admin.index.addnew{% endtrans %}</a>
     </div>
 
 </div>

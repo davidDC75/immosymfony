@@ -1,21 +1,16 @@
+{% trans_default_domain 'messages' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}Agence Lorem Ipsum{% endblock %}
+{% block title %}{% trans %}home.agency.name{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="jumbotron text-center">
-    <h1>Agence Lorem Ipsum</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.
-    </p>
+    <h1>{% trans %}home.agency.name{% endtrans %}</h1>
+    <p>{% trans %}home.text{% endtrans %}</p>
 </div>
 
 <div id="container">
-    <h2>Les derniers biens</h2>
+    <h2>{% trans %}home.last.property{% endtrans %}</h2>
     <div class="row flex">
         {% for property in properties %}
         <div class="col-3">

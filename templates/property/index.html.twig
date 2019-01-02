@@ -1,10 +1,11 @@
+{% trans_default_domain 'messages' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}Tous nos biens{% endblock %}
+{% block title %}{% trans %}property.index.see.all.property{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
-    <h1>Voir tous nos biens</h1>
+    <h1>{% trans %}property.index.see.all.property{% endtrans %}</h1>
 
 </div>
 {% endblock %}

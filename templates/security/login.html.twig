@@ -1,6 +1,7 @@
+{% trans_default_domain 'messages' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}Se connecter. Agence Lorem Ipsum{% endblock %}
+{% block title %}{% trans %}login.title{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
@@ -14,14 +15,14 @@
 
     <form action="{{ path('login') }}" method="post">
         <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
+            <label for="username">{% trans %}login.username{% endtrans %}</label>
             <input type="text" name="_username" id="username" class="form-control" value="{{ last_username }}">
         </div>
         <div class="form-group">
-            <label for="password">Mot de passe</label>
+            <label for="password">{% trans %}login.password{% endtrans %}</label>
             <input type="password" name="_password" id="password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Se connecter</button>
+        <button type="submit" class="btn btn-primary">{% trans %}login.submitbutton{% endtrans %}</button>
     </form>
 </div>
 {% endblock %}
