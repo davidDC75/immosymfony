@@ -2,8 +2,10 @@
 namespace App\Controller;
 
 use App\Entity\Property;
-use App\Repository\PropertyRepository;
+use App\Form\PropertyType;
 
+use App\Repository\PropertyRepository;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Persistence\ObjectManager;  // pour l'entity manager
 use Symfony\Component\HttpFoundation\Response; // Pour la response de la méthode
@@ -12,30 +14,38 @@ class PropertyController extends AbstractController
 {
 
     /**
+     * $repository
      * @var \App\Repository\PropertyRepository
      */
     private $repository;
 
     /**
+     * $em
      * @var \Doctrine\Common\Persistence\ObjectManager
      */
     private $em;
+
+    /**
+     * $translator
+     * @var \Symfony\Component\Translation\Translator
+     */
+    private $translator;
 
     /**
      * Constructeur
      * @param \App\Repository\PropertyRepository $repository
      * @param \Doctrine\Common\Persistence\ObjectManager $em
      */
-    public function __construct(PropertyRepository $repository,ObjectManager $em) {
+    public function __construct(PropertyRepository $repository,ObjectManager $em,TranslatorInterface $translator) {
         $this->repository=$repository; // On injecte le PropertyRepository avec l'autowiring
-        $this->em=$em; // On inject l'entity manager
+        $this->em=$em; // On injecte l'entity manager
+        $this->translator=$translator; // On injecte le translator
     }
 
     /**
      * Affiche la liste des biens disponibles.
      * @return Response
      */
-    // public function index(PropertyRepository $repository):Response { // On peut injecter le PropertyRepository directement dans la méthode index
     public function index():Response {
 
         /*
@@ -89,9 +99,18 @@ class PropertyController extends AbstractController
             ],301);
         }
 
+        // On récupère le type de chauffage
+        $tblHeat= [
+            0=>$this->translator->trans("heattype.electric",[],'forms'),
+            1=>$this->translator->trans("heattype.gas",[],'forms'),
+            2=>$this->translator->trans("heattype.fireplace",[],'forms')
+        ];
+
+
         return $this->render('property/show.html.twig', [
             'current_menu'=>'properties',
-            'property'=>$property
+            'property'=>$property,
+            'heatType'=>$tblHeat[$property->getHeat()]
         ]);
     }
 

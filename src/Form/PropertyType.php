@@ -49,7 +49,7 @@ class PropertyType extends AbstractType
         ]);
     }
 
-    private function getHeatChoices()
+    public function getHeatChoices()
     {
         return [
             "heattype.electric" => 0,
