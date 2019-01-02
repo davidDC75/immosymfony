@@ -47,38 +47,10 @@ class PropertyController extends AbstractController
      * @return Response
      */
     public function index():Response {
-
-        /*
-        $property=new Property();
-        $property->setTitle('Mon premier bien')
-            ->setPrice(200000)
-            ->setRooms(4)
-            ->setBedrooms(3)
-            ->setDescription('Une petite description')
-            ->setSurface(60)
-            ->setFloor(4)
-            ->setHeat(1)
-            ->setCity('Montpellier')
-            ->setAddress('15 Boulevard Gambetta')
-            ->setPostalCode('34000');
-        $em=$this->getDoctrine()->getManager(); // Get Entity Manager
-        $em->persist($property);
-        $em->flush(); // COMMIT
-        */
-
-        /*
-        $repository=$this->getDoctrine()->getRepository(Property::class); // Méthode manuelle pour récupèrer le propertyRepository
-        */
-
-        //$property=$this->repository->find(1);
-        //$property=$this->repository->findAll();
-        //$property=$this->repository->findOneBy(['floor'=>4]);
-
-        //$property=$this->repository->findAllVisible(); // On récupère toutes les properties non vendues (visible)
-        //dump($property);
-
+        $properties=$this->repository->findAllVisible();
         return $this->render('property/index.html.twig',[
-            'current_menu'=> 'properties'
+            'current_menu'=> 'properties',
+            'properties'=>$properties
         ]);
     }
 

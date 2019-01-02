@@ -7,5 +7,13 @@
 <div class="container mt-4">
     <h1>{% trans %}property.index.see.all.property{% endtrans %}</h1>
 
+    <div class="row">
+        {% for property in properties %}
+            <div class="col-md-4">
+                {% include 'property/_properties.html.twig' %}
+            </div>
+        {% endfor %}
+    </div>
+
 </div>
 {% endblock %}
