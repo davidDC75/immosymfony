@@ -10,3 +10,8 @@ City: Ville
 Address: Adresse
 Postal code: Code Postal
 Sold: Vendu
+
+heattype:
+    electric: "Électrique"
+    gas: "Gaz"
+    fireplace: "Cheminée"

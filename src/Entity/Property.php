@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
@@ -20,13 +19,6 @@ use Cocur\Slugify\Slugify;
  */
 class Property
 {
-
-    const HEAT=[
-        0 => 'Electrique',
-        1 => 'Gaz',
-        2 => 'Cheminée'
-    ];
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -172,8 +164,6 @@ class Property
      */
     public function getSlug(): string
     {
-        //$slugify = new Slugify();
-        //return $slugify->slugify($this->$title);
         return (new Slugify())->slugify($this->title);
     }
 
@@ -268,10 +258,6 @@ class Property
         $this->heat = $heat;
 
         return $this;
-    }
-
-    public function getHeatType(): string {
-        return self::HEAT[$this->heat];
     }
 
     public function getCity(): ?string
