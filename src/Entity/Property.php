@@ -39,8 +39,8 @@ class Property
      * @Assert\Length(
      *      min = 10,
      *      max = 200,
-     *      minMessage = "Le titre doit contenir au minimum {{ limit }} caractères.",
-     *      maxMessage = "Le titre ne doit pas dépasser {{ limit }} caractères."
+     *      minMessage = "title.minMessage",
+     *      maxMessage = "title.maxMessage"
      * )
      */
     private $title;
@@ -55,8 +55,8 @@ class Property
      * @Assert\Range(
      *      min = 30,
      *      max = 1500,
-     *      minMessage = "La surface doit être supérieure ou égale à {{ limit }} m².",
-     *      maxMessage = "La surface doit être inférieure ou égale à {{ limit }} m²."
+     *      minMessage = "surface.minMessage",
+     *      maxMessage = "surface.maxMessage"
      * )
      */
     private $surface;
@@ -66,8 +66,8 @@ class Property
      * @Assert\Range(
      *      min = 1,
      *      max = 30,
-     *      minMessage = "Le nombre de pièces doit être supérieur ou égal à {{ limit }}.",
-     *      maxMessage = "Le nombre de pièces doit être inférieur ou égal à {{ limit }}."
+     *      minMessage = "rooms.minMessage",
+     *      maxMessage = "rooms.maxMessage"
      * )
      */
     private $rooms;
@@ -77,8 +77,8 @@ class Property
      * @Assert\Range(
      *      min = 1,
      *      max = 30,
-     *      minMessage = "Le nombre de chambre doit être inférieur ou égal à {{ limit }}.",
-     *      maxMessage = "Le nombre de chambre doit être supérieur ou égal à {{ limit }}."
+     *      minMessage = "bedrooms.minMessage",
+     *      maxMessage = "bedrooms.maxMessage"
      * )
      */
     private $bedrooms;
@@ -88,8 +88,8 @@ class Property
      * @Assert\Range(
      *      min = 0,
      *      max = 50,
-     *      minMessage = "L'étage doit être supérieur ou égal à {{ limit }}.",
-     *      maxMessage = "L'étage doit être inférieur ou égal à {{ limit }}."
+     *      minMessage = "floor.minMessage",
+     *      maxMessage = "floor.maxMessage"
      * )
      */
     private $floor;
@@ -125,7 +125,7 @@ class Property
      * @Assert\Regex(
      *      pattern="/^[0-9]{5}$/",
      *      match=true,
-     *      message="Le code postal doit contenir 5 chiffres."
+     *      message="codePostal.format"
      * )
      */
     private $postal_code;
