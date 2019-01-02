@@ -21,7 +21,12 @@ login:
     submitbutton: "Se connecter"
 
 property:
-    index.see.all.property: "Tous nos biens"
+    index:
+        see.all.property: "Tous nos biens"
+        search:
+            maxPrice: Budget maximum
+            minSurface: Surface minimum
+            submitLabel: Rechercher
     show:
         rooms.bedrooms: "%rooms% pièces - %bedrooms% m²"
         contact: "Contacter l'agence"

@@ -100,8 +100,8 @@ class Property
      * @Assert\Range(
      *      min = 10000,
      *      max = 100000000,
-     *      minMessage = "Le prix doit être supérieur ou égal à {{ limit }} euros.",
-     *      maxMessage = "Le prix doit être inférieur ou égal à {{ limit }} euros."
+     *      minMessage = "price.minMessage",
+     *      maxMessage = "price.maxMessage"
      * )
      */
     private $price;

@@ -2,7 +2,9 @@
 namespace App\Controller;
 
 use App\Entity\Property;
+use App\Entity\PropertySearch;
 use App\Form\PropertyType;
+use \App\Form\PropertySearchType;
 
 use App\Repository\PropertyRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -38,7 +40,8 @@ class PropertyController extends AbstractController
      * @param \App\Repository\PropertyRepository $repository
      * @param \Doctrine\Common\Persistence\ObjectManager $em
      */
-    public function __construct(PropertyRepository $repository,ObjectManager $em,TranslatorInterface $translator) {
+    public function __construct(PropertyRepository $repository,ObjectManager $em,TranslatorInterface $translator)
+    {
         $this->repository=$repository; // On injecte le PropertyRepository avec l'autowiring
         $this->em=$em; // On injecte l'entity manager
         $this->translator=$translator; // On injecte le translator
@@ -48,16 +51,22 @@ class PropertyController extends AbstractController
      * Affiche la liste des biens disponibles.
      * @return Response
      */
-    public function index(PaginatorInterface $paginator,Request $request):Response {
+    public function index(PaginatorInterface $paginator,Request $request):Response
+    {
+        $search=new PropertySearch();
+        $form=$this->createForm(PropertySearchType::class,$search);
+        $form->handleRequest($request);
+
         $properties=$paginator->paginate(
-            $this->repository->findAllVisibleQuery(), // Récupère la query
+            $this->repository->findAllVisibleQuery($search), // Récupère la query
             $request->query->getInt('page', 1), // Récupère $_GET['page'] et converti en int. Par défaut 1
             12 // limit
         );
 
         return $this->render('property/index.html.twig',[
-            'current_menu'=> 'properties',
-            'properties'=>$properties
+            'current_menu'=>'properties',
+            'properties'=>$properties,
+            'form'=>$form->createView()
         ]);
     }
 
@@ -67,7 +76,8 @@ class PropertyController extends AbstractController
      * @param integer $id
      * @return Response
      */
-    public function show($slug,$id):Response { // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
+    public function show($slug,$id):Response // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
+    {
         $property=$this->repository->find($id);
 
         if ($property->getSlug()!==$slug)

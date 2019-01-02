@@ -4,8 +4,9 @@ namespace App\Repository;
 
 use Doctrine\ORM\Query;
 use App\Entity\Property;
-use Doctrine\ORM\QueryBuilder;
+use App\Entity\PropertySearch;
 
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -55,10 +56,25 @@ class PropertyRepository extends ServiceEntityRepository
      * Retourne tous les biens qui n'ont pas été vendus
      * @return Query
      */
-    public function findAllVisibleQuery(): Query // On ne renvoit pas un résultat mais une query afin d'être utilisé avec le paginator
+    public function findAllVisibleQuery(PropertySearch $search): Query // On ne renvoie pas un résultat mais une query afin d'être utilisé avec le paginator
     {
-        return $this->findVisibleQuery()
-            ->getQuery();
+        $query=$this->findVisibleQuery();
+
+        if ($search->getMaxPrice())
+        {
+            $query=$query
+                ->andWhere('p.price <= :maxprice')
+                ->setParameter('maxprice',$search->getMaxPrice());
+        }
+
+        if ($search->getMinSurface())
+        {
+            $query=$query
+                ->andWhere('p.surface >= :minsurface')
+                ->setParameter('minsurface',$search->getMinSurface());
+        }
+
+        return $query->getQuery();
     }
 
     /**
