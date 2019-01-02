@@ -6,6 +6,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class PropertySearch
 {
     /**
+     * @Assert\Range(
+     *      min = 10000,
+     *      max = 100000000,
+     *      minMessage = "price.minMessage",
+     *      maxMessage = "price.maxMessage"
+     * )
      * @var int|null
      */
     private $maxPrice;
@@ -23,12 +29,6 @@ class PropertySearch
 
     /**
      * Retourne le prix maximum pour la recherche
-     * @Assert\Range(
-     *      min = 10000,
-     *      max = 100000000,
-     *      minMessage = "price.minMessage",
-     *      maxMessage = "price.maxMessage"
-     * )
      * @return int|null
      */
     public function getMaxPrice(): ?int
