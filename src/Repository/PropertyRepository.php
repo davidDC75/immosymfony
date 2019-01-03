@@ -15,6 +15,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  * @method Property|null findOneBy(array $criteria, array $orderBy = null)
  * @method Property[]    findAll()
  * @method Property[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Query         findAllVisibleQuery(PropertySearch $search)
+ * @method Property[]    findLatest()
+ * @method QueryBuilder  findVisibleQuery()
  */
 class PropertyRepository extends ServiceEntityRepository
 {
