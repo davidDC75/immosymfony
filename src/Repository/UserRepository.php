@@ -14,6 +14,12 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
+    /**
+     * __construct
+     *
+     * @param \Symfony\Bridge\Doctrine\RegistryInterface $registry
+     * @return void
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);

@@ -58,7 +58,7 @@ class PropertyRepository extends ServiceEntityRepository
     /**
      * findAllAdmin
      *
-     * @return Query
+     * @return \Doctrine\ORM\Query
      */
     public function findAllAdmin(): Query
     {
@@ -67,7 +67,7 @@ class PropertyRepository extends ServiceEntityRepository
     }
     /**
      * Retourne tous les biens qui n'ont pas été vendus
-     * @return Query
+     * @return \Doctrine\ORM\Query
      */
     public function findAllVisibleQuery(PropertySearch $search): Query // On ne renvoie pas un résultat mais une query afin d'être utilisé avec le paginator
     {

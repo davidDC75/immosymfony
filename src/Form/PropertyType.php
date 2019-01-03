@@ -13,6 +13,13 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PropertyType extends AbstractType
 {
+    /**
+     * buildForm
+     *
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -42,6 +49,12 @@ class PropertyType extends AbstractType
         ;
     }
 
+    /**
+     * configureOptions
+     *
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

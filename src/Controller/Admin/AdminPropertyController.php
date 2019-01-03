@@ -38,8 +38,8 @@ class AdminPropertyController extends AbstractController
 
     /**
      * Liste l'ensemble des biens
-     * @param PaginatorInterface $paginator
-     * @param Request $request
+     * @param \Knp\Component\Pager\PaginatorInterface $paginator
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(PaginatorInterface $paginator,Request $request):Response

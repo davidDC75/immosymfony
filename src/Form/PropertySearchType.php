@@ -12,6 +12,13 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class PropertySearchType extends AbstractType
 {
+    /**
+     * buildForm
+     *
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -34,6 +41,12 @@ class PropertySearchType extends AbstractType
             // ]);
     }
 
+    /**
+     * configureOptions
+     *
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -44,6 +57,11 @@ class PropertySearchType extends AbstractType
         ]);
     }
 
+    /**
+     * getBlockPrefix
+     *
+     * @return string
+     */
     public function getBlockPrefix()
     {
         return '';
