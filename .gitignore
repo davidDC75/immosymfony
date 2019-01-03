@@ -1,6 +1,7 @@
 ###> Editor workspace file ###
 immosymfony.code-workspace
 .editorconfig
+.vscode/
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.*.local

@@ -35,7 +35,8 @@ class PropertyType extends AbstractType
             ->add('address')
             ->add('postal_code')
             ->add('sold',CheckboxType::class,[
-                'help'=>'sold.help'
+                'help'=>'sold.help',
+                'required'=>false
             ])
             // ->add('created_at')
         ;

@@ -10,11 +10,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  * @UniqueEntity(
  *      fields="title",
- *      message="title.unique"
+ *      message="add.edit.property.title.unique"
  * )
  * @UniqueEntity(
  *      fields="address",
- *      message="address.unique"
+ *      message="add.edit.property.address.unique"
  * )
  */
 class Property
@@ -40,8 +40,8 @@ class Property
      * @Assert\Length(
      *      min = 10,
      *      max = 200,
-     *      minMessage = "title.minMessage",
-     *      maxMessage = "title.maxMessage"
+     *      minMessage = "add.edit.property.title.minMessage",
+     *      maxMessage = "add.edit.property.title.maxMessage"
      * )
      */
     private $title;
@@ -56,8 +56,8 @@ class Property
      * @Assert\Range(
      *      min = 30,
      *      max = 1500,
-     *      minMessage = "surface.minMessage",
-     *      maxMessage = "surface.maxMessage"
+     *      minMessage = "add.edit.property.surface.minMessage",
+     *      maxMessage = "add.edit.property.surface.maxMessage"
      * )
      */
     private $surface;
@@ -67,8 +67,8 @@ class Property
      * @Assert\Range(
      *      min = 1,
      *      max = 30,
-     *      minMessage = "rooms.minMessage",
-     *      maxMessage = "rooms.maxMessage"
+     *      minMessage = "add.edit.property.rooms.minMessage",
+     *      maxMessage = "add.edit.property.rooms.maxMessage"
      * )
      */
     private $rooms;
@@ -78,8 +78,8 @@ class Property
      * @Assert\Range(
      *      min = 1,
      *      max = 30,
-     *      minMessage = "bedrooms.minMessage",
-     *      maxMessage = "bedrooms.maxMessage"
+     *      minMessage = "add.edit.property.bedrooms.minMessage",
+     *      maxMessage = "add.edit.property.bedrooms.maxMessage"
      * )
      */
     private $bedrooms;
@@ -89,8 +89,8 @@ class Property
      * @Assert\Range(
      *      min = 0,
      *      max = 50,
-     *      minMessage = "floor.minMessage",
-     *      maxMessage = "floor.maxMessage"
+     *      minMessage = "add.edit.property.floor.minMessage",
+     *      maxMessage = "add.edit.property.floor.maxMessage"
      * )
      */
     private $floor;
@@ -100,8 +100,8 @@ class Property
      * @Assert\Range(
      *      min = 10000,
      *      max = 100000000,
-     *      minMessage = "price.minMessage",
-     *      maxMessage = "price.maxMessage"
+     *      minMessage = "add.edit.property.price.minMessage",
+     *      maxMessage = "add.edit.property.price.maxMessage"
      * )
      */
     private $price;
@@ -126,7 +126,7 @@ class Property
      * @Assert\Regex(
      *      pattern="/^[0-9]{5}$/",
      *      match=true,
-     *      message="codePostal.format"
+     *      message="add.edit.property.codePostal.format"
      * )
      */
     private $postal_code;

@@ -1,31 +1,32 @@
 # Pour les erreurs dans le formulaire d'ajout et d'édition de Property
-title:
-    unique: "Ce titre existe déjà."
-    minMessage: "Le titre doit contenir au minimum {{ limit }} caractères."
-    maxMessage: "Le titre ne doit pas dépasser {{ limit }} caractères."
+add.edit.property:
+    title:
+        unique: "Ce titre existe déjà."
+        minMessage: "Le titre doit contenir au minimum {{ limit }} caractères."
+        maxMessage: "Le titre ne doit pas dépasser {{ limit }} caractères."
 
-address:
-    unique: "Cette adresse est déjà utilisée."
+    address:
+        unique: "Cette adresse est déjà utilisée."
 
-surface:
-    minMessage: "La surface doit être supérieure ou égale à {{ limit }} m²."
-    maxMessage: "La surface doit être inférieure ou égale à {{ limit }} m²."
+    surface:
+        minMessage: "La surface doit être supérieure ou égale à {{ limit }} m²."
+        maxMessage: "La surface doit être inférieure ou égale à {{ limit }} m²."
 
-rooms:
-    minMessage: "Le nombre de pièces doit être supérieur ou égal à {{ limit }}."
-    maxMessage: "Le nombre de pièces doit être inférieur ou égal à {{ limit }}."
+    rooms:
+        minMessage: "Le nombre de pièces doit être supérieur ou égal à {{ limit }}."
+        maxMessage: "Le nombre de pièces doit être inférieur ou égal à {{ limit }}."
 
-bedrooms:
-    minMessage: "Le nombre de chambre doit être supérieur ou égal à {{ limit }}."
-    maxMessage: "Le nombre de chambre doit être inférieur ou égal à {{ limit }}."
+    bedrooms:
+        minMessage: "Le nombre de chambre doit être supérieur ou égal à {{ limit }}."
+        maxMessage: "Le nombre de chambre doit être inférieur ou égal à {{ limit }}."
 
-floor:
-    minMessage: "L'étage doit être supérieur ou égal à {{ limit }}."
-    maxMessage: "L'étage doit être inférieur ou égal à {{ limit }}."
+    floor:
+        minMessage: "L'étage doit être supérieur ou égal à {{ limit }}."
+        maxMessage: "L'étage doit être inférieur ou égal à {{ limit }}."
 
-price:
-    minMessage: "Le prix doit être supérieur ou égal à {{ limit }} euros."
-    maxMessage: "Le prix doit être inférieur ou égal à {{ limit }} euros."
+    price:
+        minMessage: "Le prix doit être supérieur ou égal à {{ limit }} euros."
+        maxMessage: "Le prix doit être inférieur ou égal à {{ limit }} euros."
 
-codePostal:
-    format: "Le code postal doit contenir 5 chiffres."
+    codePostal:
+        format: "Le code postal doit contenir 5 chiffres."
