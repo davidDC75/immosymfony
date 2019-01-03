@@ -56,6 +56,16 @@ class PropertyRepository extends ServiceEntityRepository
     */
 
     /**
+     * findAllAdmin
+     *
+     * @return Query
+     */
+    public function findAllAdmin(): Query
+    {
+        return $this->createQueryBuilder('p')
+            ->getQuery();
+    }
+    /**
      * Retourne tous les biens qui n'ont pas été vendus
      * @return Query
      */

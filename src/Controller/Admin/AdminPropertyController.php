@@ -5,6 +5,7 @@ use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
 
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,11 +38,18 @@ class AdminPropertyController extends AbstractController
 
     /**
      * Liste l'ensemble des biens
+     * @param PaginatorInterface $paginator
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index():Response
+    public function index(PaginatorInterface $paginator,Request $request):Response
     {
-        $properties=$this->repository->findAll();
+        //$properties=$this->repository->findAll();
+        $properties=$paginator->paginate(
+            $this->repository->findAllAdmin(), // Récupère la query
+            $request->query->getInt('page', 1), // Récupère $_GET['page'] et converti en int. Par défaut 1
+            10 // limit
+        );
         return $this->render('admin/property/index.html.twig',compact('properties'));
     }
 
