@@ -26,7 +26,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
-            {% if app.user %}
+            {% if is_granted("ROLE_ADMIN") %}
                 <li class="nav-item">
                     <a href="{{ path('admin.property.index') }}" class="nav-link">{% trans %}navbar.admin.link{% endtrans %}</a>
                 </li>
