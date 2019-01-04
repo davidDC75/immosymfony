@@ -1,0 +1,11 @@
+{% trans_default_domain 'messages' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}{% trans with {'%option.name%':option.name} %}admin.option.edit.title{% endtrans %}{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>{% trans with {'%option.name%':option.name} %}admin.option.edit.title{% endtrans %}</h1>
+    {{ include('admin/option/_form.html.twig', {'form': form, 'button': 'admin.option.index.edit'|trans({},'messages')} ) }}
+</div>
+{% endblock %}

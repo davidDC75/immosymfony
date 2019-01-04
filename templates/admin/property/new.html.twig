@@ -1,11 +1,11 @@
 {% trans_default_domain 'messages' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}admin.create.title{% endtrans %}{% endblock %}
+{% block title %}{% trans %}admin.property.create.title{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container mt-4">
-    <h1>{% trans %}admin.create.title{% endtrans %}</h1>
-    {{ include('admin/property/_form.html.twig', {'form': form, 'button': 'admin.create.submitbutton'|trans({},'messages')}) }}
+    <h1>{% trans %}admin.property.create.title{% endtrans %}</h1>
+    {{ include('admin/property/_form.html.twig', {'form': form, 'button': 'admin.property.create.submitbutton'|trans({},'messages')}) }}
 </div>
 {% endblock %}

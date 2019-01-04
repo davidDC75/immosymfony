@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('admin.option.delete', {'id': option.id}) }}" onsubmit="return confirm('{% trans %}admin.option.deleteWarning{% endtrans %}');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ option.id) }}">
+    <button class="btn">{% trans %}admin.option.delete{% endtrans %}</button>
+</form>

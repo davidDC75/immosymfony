@@ -5,7 +5,7 @@
 
 {% block body %}
 <div class="container mt-4">
-    <h1>Gérer les biens</h1>
+    <h1>{% trans %}admin.property.index.h1{% endtrans %}</h1>
     {% for message in app.flashes('success') %}
     <div class="alert alert-success">
         {{ message }}
@@ -14,8 +14,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>{% trans %}admin.index.title{% endtrans %}</th>
-                <th>{% trans %}admin.index.action{% endtrans %}</th>
+                <th>{% trans %}admin.property.index.title{% endtrans %}</th>
+                <th>{% trans %}admin.property.index.action{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -23,12 +23,12 @@
             <tr>
                 <td>{{ property.title }}</td>
                 <td>
-                    <a href="{{ path('admin.property.edit', { id: property.id }) }}" class="btn btn-secondary">{% trans %}admin.index.button.edit{% endtrans %}</a>
+                    <a href="{{ path('admin.property.edit', { id: property.id }) }}" class="btn btn-secondary">{% trans %}admin.property.index.button.edit{% endtrans %}</a>
                     <form method="POST" action="{{ path('admin.property.delete', { id: property.id }) }}" style="display: inline-block"
-                        onsubmit="return confirm('Êtes-vous sûr ?')">
+                        onsubmit="return confirm('{% trans %}admin.property.deleteWarning{% endtrans %}')">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">
-                        <button class="btn btn-danger">{% trans %}admin.index.button.delete{% endtrans %}</button>
+                        <button class="btn btn-danger">{% trans %}admin.property.index.button.delete{% endtrans %}</button>
                     </form>
                 </td>
             </tr>
@@ -37,7 +37,7 @@
     </table>
 
     <div class="text-right">
-        <a href="{{ path('admin.property.new') }}" class="btn btn-primary">{% trans %}admin.index.addnew{% endtrans %}</a>
+        <a href="{{ path('admin.property.new') }}" class="btn btn-primary">{% trans %}admin.property.index.addnew{% endtrans %}</a>
     </div>
 
     <div class="pagination">

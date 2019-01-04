@@ -9,6 +9,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -58,7 +59,7 @@ class AdminPropertyController extends AbstractController
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function new(Request $request):Response
+    public function new(Request $request,TranslatorInterface $translator):Response
     {
         $property=new Property();
         $form=$this->createForm(PropertyType::class,$property);
@@ -68,7 +69,7 @@ class AdminPropertyController extends AbstractController
         {
             $this->em->persist($property); // Pour l'ajout l'em ne track pas alors il faut faire un persist (différence avec edit plus bas)
             $this->em->flush();
-            $this->addFlash('success','Bien créé avec succès');
+            $this->addFlash('success',$translator->trans('admin.property.addSuccess',[],'messages'));
             return $this->redirectToRoute('admin.property.index');
         }
 
@@ -84,14 +85,14 @@ class AdminPropertyController extends AbstractController
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Property $property, Request $request):Response
+    public function edit(Property $property, Request $request, TranslatorInterface $translator):Response
     {
         $form=$this->createForm(PropertyType::class,$property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
-            $this->addFlash('success','Bien modifié avec succès');
+            $this->addFlash('success',$translator->trans('admin.property.editSuccess',[],'messages'));
             return $this->redirectToRoute('admin.property.index');
         }
         return $this->render('admin/property/edit.html.twig',[

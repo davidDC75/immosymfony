@@ -4,6 +4,8 @@ navbar:
     admin.link: "Administration"
     disconnect: "Se déconnecter"
     connect: "Se connecter"
+    admin.properties: "Propriétés"
+    admin.options: "Options"
 
 home:
     agency.name: "Agence Lorem Ipsum"
@@ -40,19 +42,44 @@ property:
             heat: "Chauffage"
 
 admin:
-    edit:
-        title: "Éditer %property.title%"
-        h1: "Éditer le bien"
-        submitbutton: "Éditer"
-    index:
-        title: "Titre"
-        action: "Action"
-        button:
+    property:
+        edit:
+            title: "Éditer %property.title%"
+            h1: "Éditer le bien"
+            submitbutton: "Éditer"
+        index:
+            title: "Titre"
+            action: "Action"
+            button:
+                edit: "Éditer"
+                delete: "Supprimer"
+            addnew: "Créer un nouveau bien"
+            h1: "Gérer les biens"
+        create:
+            title: "Créer un nouveau bien"
+            h1: "Créer un nouveau bien"
+            submitbutton: "Créer"
+        deleteWarning: "Êtes-vous sûr de vouloir supprimer ce bien ?"
+        addSuccess: "Bien ajouté avec succès."
+        editSuccess: "Bien modifié avec succès"
+    #Pour administrer les options
+    option:
+        index:
+            title: "Gérer l es options"
+            field:
+                id: "ID"
+                name: "Nom"
+            actions: "Actions"
+            show: "Voir"
             edit: "Éditer"
-            delete: "Supprimer"
-        addnew: "Créer un nouveau bien"
-    create:
-        title: "Créer un nouveau bien"
-        h1: "Créer un nouveau bien"
-        submitbutton: "Créer"
-
+            noRecords: "Aucune option de trouvée."
+            addNew: "Créer une nouvelle option"
+        backToList: "Retourner à la liste des options"
+        save: "Enregistrer"
+        option: "Option"
+        delete: "Supprimer"
+        deleteWarning: "Êtes-vous sûr de vouloir supprimer cette option ?"
+        edit:
+            title: "Éditer l'option : %option.name%"
+        addSuccess: "Option ajoutée avec succès."
+        editSuccess: "Option modifiée avec succès."

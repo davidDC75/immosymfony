@@ -1,0 +1,48 @@
+{% trans_default_domain 'messages' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}>{% trans %}admin.option.index.title{% endtrans %}{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>{% trans %}admin.option.index.title{% endtrans %}</h1>
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{% trans %}admin.option.index.field.name{% endtrans %}</th>
+                <th>{% trans %}admin.option.index.actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for option in options %}
+            <tr>
+                <td>{{ option.name }}</td>
+                <td>
+                    <a href="{{ path('admin.option.edit', { id: option.id }) }}" class="btn btn-secondary">{% trans %}admin.option.index.edit{% endtrans %}</a>
+                    <form method="POST" action="{{ path('admin.option.delete', { id: option.id }) }}" style="display: inline-block"
+                        onsubmit="return confirm('{% trans %}admin.option.deleteWarning{% endtrans %}')">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ option.id) }}">
+                        <button class="btn btn-danger">{% trans %}admin.option.delete{% endtrans %}</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-right">
+        <a href="{{ path('admin.option.new') }}" class="btn btn-primary">{% trans %}admin.option.index.addNew{% endtrans %}</a>
+    </div>
+
+    <div class="pagination">
+        {{ knp_pagination_render(options) }}
+    </div>
+
+</div>
+{% endblock %}

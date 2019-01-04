@@ -18,6 +18,8 @@ property.show:
         slug: '[a-z0-9\-]*'
 
 # Pour la partie administration
+
+# Administration des biens
 admin.property.index:
     path: /admin
     controller: App\Controller\Admin\AdminPropertyController::index
@@ -39,6 +41,33 @@ admin.property.delete:
     requirements:
         id: '[0-9]*'
     methods: DELETE
+
+# Administration des options
+admin.option.index:
+    path: /admin/option
+    controller: App\Controller\Admin\AdminOptionController::index
+
+admin.option.new:
+    path: /admin/option/new
+    controller: App\Controller\Admin\AdminOptionController::new
+    methods: GET|POST
+
+admin.option.edit:
+    path: /admin/option/{id}/edit
+    controller: App\Controller\Admin\AdminOptionController::edit
+    requirements:
+        id: '[0-9]*'
+    methods: GET|POST
+
+admin.option.delete:
+    path: /admin/option/{id}
+    controller:  App\Controller\Admin\AdminOptionController::delete
+    requirements:
+        id: '[0-9]*'
+    methods: DELETE
+
+
+
 
 # Pour la partie login
 login:

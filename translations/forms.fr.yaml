@@ -1,19 +1,23 @@
-Title: Titre
-Description: Description
-Surface: Surface
-Rooms: Pièces
-Bedrooms: Chambres
-Floor: Étage
-Price: Prix
-Heat: Chauffage
-City: Ville
-Address: Adresse
-Postal code: Code Postal
-Sold: Vendu
-sold.help: "Cochez cette case si le bien a été vendu"
+property:
+    title: "Titre"
+    description: "Description"
+    surface: "Surface"
+    rooms: "Pièces"
+    bedrooms: "Chambres"
+    floor: "Étage"
+    price: "Prix"
+    heat: "Chauffage"
+    city: "Ville"
+    address: "Adresse"
+    postalCode: "Code Postal"
+    sold: "Vendu"
+    sold.help: "Cochez cette case si le bien a été vendu"
+    options: "Options"
+    heattype:
+        electric: "Électrique"
+        gas: "Gaz"
+        fireplace: "Cheminée"
 
-heattype:
-    electric: "Électrique"
-    gas: "Gaz"
-    fireplace: "Cheminée"
+option:
+    name: "Nom"
 
