@@ -29,6 +29,8 @@ property:
             maxPrice: Budget maximum
             minSurface: Surface minimum
             submitLabel: Rechercher
+        image:
+            alt: "Photo principale du bien"
     show:
         rooms.bedrooms: "%rooms% pièces - %bedrooms% m²"
         contact: "Contacter l'agence"
