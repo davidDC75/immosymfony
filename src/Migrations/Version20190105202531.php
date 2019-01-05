@@ -16,7 +16,7 @@ final class Version20190105202531 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE property ADD updated_at DATETIME NOT NULL');
-        $this->addSql('UPDATE property SET updated_at=NOW()');
+        //$this->addSql('UPDATE property SET updated_at=NOW()');
     }
 
     public function down(Schema $schema) : void
