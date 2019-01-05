@@ -18,3 +18,7 @@ immosymfony.code-workspace
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+
+###< images public ###
+/public/images/
+

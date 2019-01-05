@@ -10,3 +10,4 @@ vich_uploader:
         properties_image:
             uri_prefix: /images/properties
             upload_destination: '%kernel.project_dir%/public/images/properties'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
