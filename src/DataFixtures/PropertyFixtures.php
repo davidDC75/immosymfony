@@ -14,6 +14,7 @@ class PropertyFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker=Factory::create('fr_FR');
+
         for ($i=0;$i<100;$i++)
         {
             $property=new Property();
@@ -28,7 +29,7 @@ class PropertyFixtures extends Fixture
                 ->setHeat($faker->numberBetween(0,2))
                 ->setCity($faker->city)
                 ->setAddress($faker->address)
-                ->setPostalCode($faker->postcode)
+                ->setPostalCode($faker->numberBetween(10000,99999))
                 ->setSold(false);
             $manager->persist($property);
         }

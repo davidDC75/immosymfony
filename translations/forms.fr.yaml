@@ -13,6 +13,7 @@ property:
     sold: "Vendu"
     sold.help: "Cochez cette case si le bien a été vendu"
     options: "Options"
+    image: "Image"
     heattype:
         electric: "Électrique"
         gas: "Gaz"

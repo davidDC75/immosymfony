@@ -2,11 +2,15 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
@@ -18,6 +22,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *      fields="address",
  *      message="add.edit.property.address.unique"
  * )
+ * @Vich\Uploadable
  */
 class Property
 {
@@ -149,12 +154,34 @@ class Property
     private $options;
 
     /**
+     * $imageFile
+     * @Vich\UploadableField(mapping="properties_image",fileNameProperty="filename")
+     *
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * $filename
+     *
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $filename;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated_at;
+
+    /**
      * Constructeur
      * Rempli la propriété created_at lors de l'instanciation d'un nouvel objet Property
      */
     public function __construct()
     {
         $this->created_at=new \DateTime();
+        $this->updated_at=new \DateTime();
         $this->options = new ArrayCollection();
     }
 
@@ -361,6 +388,74 @@ class Property
             $this->options->removeElement($option);
             $option->removeProperty($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * Get $imageFile
+     *
+     * @return  File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set $imageFile
+     *
+     * @param  File|null  $imageFile
+     *
+     * @return  Property
+     */
+    public function setImageFile(?File $imageFile=null): Property
+    {
+        $this->imageFile = $imageFile;
+
+        // Only change the updated at if the file is really uploaded to avoir database updates.
+        // This is needed when the file should be set when loading the entity.
+        // https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/known_issues.md
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at=new \Datetime('now');
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * Get $filename
+     *
+     * @return  string|null
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Set $filename
+     *
+     * @param  string|null  $filename
+     *
+     * @return  Property
+     */
+    public function setFilename(?string $filename=null): Property
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
