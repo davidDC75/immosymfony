@@ -155,6 +155,10 @@ class Property
 
     /**
      * $imageFile
+     * @Assert\Image(
+     *      mimeTypes="image/jpeg",
+     *      mimeTypesMessage="add.edit.property.image.format"
+     * )
      * @Vich\UploadableField(mapping="properties_image",fileNameProperty="filename")
      *
      * @var File|null

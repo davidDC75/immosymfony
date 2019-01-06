@@ -30,3 +30,6 @@ add.edit.property:
 
     codePostal:
         format: "Le code postal doit contenir 5 chiffres."
+
+    image:
+        format: "Seul les jpeg sont autorisés"
