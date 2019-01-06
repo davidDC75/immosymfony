@@ -54,6 +54,11 @@
         </div>
         <div class="col-md-4">
             <h2>{% trans %}property.show.specificity{% endtrans %}</h2>
+            <ul class="list-group">
+            {% for option in property.options %}
+                <li class="list-group-item">{{ option.name }}</li>
+            {% endfor %}
+            </ul>
         </div>
     </div>
 </div>
