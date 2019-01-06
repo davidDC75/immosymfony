@@ -91,6 +91,7 @@ class AdminPropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $property->setUpdatedAt(new \Datetime('now'));
             $this->em->flush();
             $this->addFlash('success',$translator->trans('admin.property.editSuccess',[],'messages'));
             return $this->redirectToRoute('admin.property.index');
