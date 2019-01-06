@@ -6,13 +6,13 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail:
-                    size: [800,530]
+                    size: [360,230]
                     mode: outbound
         medium:
             quality: 75
             filters:
                 thumbnail:
-                    size: [360,230]
+                    size: [800,530]
                     mode: outbound
 #liip_imagine:
 #    # valid drivers options include "gd" or "gmagick" or "imagick"
