@@ -22,3 +22,7 @@ immosymfony.code-workspace
 ###< images public ###
 /public/images/
 
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###
