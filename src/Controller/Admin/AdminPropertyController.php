@@ -9,10 +9,8 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -88,21 +86,12 @@ class AdminPropertyController extends AbstractController
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Property $property,
-        Request $request,
-        TranslatorInterface $translator,
-        CacheManager $cacheManager,
-        UploaderHelper $uploaderHelper
-    ):Response
+    public function edit(Property $property, Request $request, TranslatorInterface $translator):Response
     {
         $form=$this->createForm(PropertyType::class,$property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($property->getImageFile() instanceof UploadedFile)
-            {
-                $cacheManager->remove($uploaderHelper->asset($property,'imageFile'));
-            }
             $property->setUpdatedAt(new \Datetime('now'));
             $this->em->flush();
             $this->addFlash('success',$translator->trans('admin.property.editSuccess',[],'messages'));

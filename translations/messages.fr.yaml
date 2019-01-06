@@ -31,6 +31,7 @@ property:
             submitLabel: Rechercher
         image:
             alt: "Photo principale du bien"
+            altNoPhoto: "Aucune photo n'a été donnée pour ce bien"
     show:
         rooms.bedrooms: "%rooms% pièces - %bedrooms% m²"
         contact: "Contacter l'agence"

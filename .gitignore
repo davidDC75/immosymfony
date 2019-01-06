@@ -19,10 +19,11 @@ immosymfony.code-workspace
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
-###< images public ###
-/public/images/
-
+###< properties images public ###
+/public/images/properties/*
+#except empty.jpg
+!/public/images/properties/empty.jpg
 
 ###> liip/imagine-bundle ###
-/public/media/cache/
+/public/media/cache/*
 ###< liip/imagine-bundle ###
