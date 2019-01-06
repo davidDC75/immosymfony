@@ -8,15 +8,14 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190105202531 extends AbstractMigration
+final class Version20190106105442 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE property ADD updated_at DATETIME NOT NULL');
-        //$this->addSql('UPDATE property SET updated_at=NOW()');
+        $this->addSql('ALTER TABLE property ADD updated_at DATETIME DEFAULT \'2010-01-01 00:00:00\' NOT NULL');
     }
 
     public function down(Schema $schema) : void

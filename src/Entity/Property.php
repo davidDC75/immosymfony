@@ -170,7 +170,7 @@ class Property
     private $filename;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",options={"default": "2010-01-01 00:00:00"})
      */
     private $updated_at;
 
