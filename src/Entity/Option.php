@@ -22,6 +22,12 @@ class Option
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "add.edit.option.name.minMessage",
+     *      maxMessage = "add.edit.option.name.maxMessage"
+     * )
      */
     private $name;
 

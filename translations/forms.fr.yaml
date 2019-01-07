@@ -22,3 +22,12 @@ property:
 option:
     name: "Nom"
 
+contact:
+    firstname: "Prénom"
+    lastname: "Nom"
+    phone: "Téléphone"
+    email: "Email"
+    message: "Votre message"
+    button: "Envoyer"
+    success: "Votre email a bien été envoyé à notre équipe."
+

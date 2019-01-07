@@ -1,9 +1,11 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Contact;
+use App\Form\ContactType;
 use App\Entity\Property;
-use App\Entity\PropertySearch;
 use App\Form\PropertyType;
+use App\Entity\PropertySearch;
 use \App\Form\PropertySearchType;
 
 use App\Repository\PropertyRepository;
@@ -64,9 +66,9 @@ class PropertyController extends AbstractController
         );
 
         return $this->render('property/index.html.twig',[
-            'current_menu'=>'properties',
-            'properties'=>$properties,
-            'form'=>$form->createView()
+            'current_menu' => 'properties',
+            'properties'   => $properties,
+            'form'         => $form->createView()
         ]);
     }
 
@@ -76,7 +78,7 @@ class PropertyController extends AbstractController
      * @param integer $id
      * @return Response
      */
-    public function show($slug,$id):Response // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
+    public function show($slug, $id, Request $request, TranslatorInterface $translator):Response // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
     {
         $property=$this->repository->find($id);
 
@@ -88,11 +90,24 @@ class PropertyController extends AbstractController
             ],301);
         }
 
-        // On récupère le type de chauffage
+        $contact=new Contact();
+        $contact->setProperty($property);
+        $form=$this->createForm(ContactType::class,$contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success',$translator->trans('contact.success',[],'forms'));
+            return $this->redirectToRoute('property.show',[
+                'id'=>$property->getId(),
+                'slug'=>$property->getSlug()
+            ]);
+        }
+
         return $this->render('property/show.html.twig', [
-            'current_menu'=>'properties',
-            'property'=>$property,
-            'heatType'=>$this->translator->trans(Property::HEAT[$property->getHeat()],[],'forms')
+            'current_menu' => 'properties',
+            'property'     => $property,
+            'heatType'     => $this->translator->trans(Property::HEAT[$property->getHeat()],[],'forms'),
+            'form'         => $form->createView()
         ]);
     }
 

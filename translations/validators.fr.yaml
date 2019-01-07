@@ -33,3 +33,21 @@ add.edit.property:
 
     image:
         format: "Seul les jpeg sont autorisés"
+
+add.edit.option:
+    name:
+        minMessage: "Le nom doit contenir au minimum {{ limit }} caractères;"
+        maxMessage: "Le nom ne doit pas dépasser {{ limit }} caractères."
+
+contact:
+    firstname:
+        minMessage: "Le prénom doit contenir au minimum {{ limit }} caractères."
+        maxMessage: "Le prénom doit pas dépasser {{ limit }} caractères."
+    lastname:
+        minMessage: "Le nom doit contenir au minimum {{ limit }} caractères."
+        maxMessage: "Le nom doit pas dépasser {{ limit }} caractères."
+    phone: "Le numéro de téléphone doit être composé de 10 chiffres."
+    email: "L'email est invalide"
+    message:
+        minMessage: "Le message doit contenir au minimum {{ limit }} caractères."
+        maxMessage: "Le message ne doit pas dépasser {{ limit }} caractères."
