@@ -5,12 +5,17 @@
 
 {% block body %}
 <div class="jumbotron">
-    {% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-    {% endfor %}
     <div id="container">
+        {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% if not form.vars.valid %}
+            <div class="alert alert-danger">
+                Le formulaire contient une ou plusieurs erreurs
+            </div>
+        {% endif %}
         <div class="row">
             <div class="col-md-8">
             {% if property.filename %}

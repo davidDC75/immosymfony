@@ -2,13 +2,16 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
-use App\Form\ContactType;
 use App\Entity\Property;
+use App\Form\ContactType;
 use App\Form\PropertyType;
 use App\Entity\PropertySearch;
 use \App\Form\PropertySearchType;
 
 use App\Repository\PropertyRepository;
+
+use App\Notification\ContactNotification;
+
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -78,7 +81,13 @@ class PropertyController extends AbstractController
      * @param integer $id
      * @return Response
      */
-    public function show($slug, $id, Request $request, TranslatorInterface $translator):Response // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
+    public function show(
+        $slug,
+        $id,
+        Request $request,
+        TranslatorInterface $translator,
+        ContactNotification $notification
+        ):Response // On peut mettre Property $property en paramètre afin d'économiser une ligne. Pas besoin du find car Symfony utilisera automatiquement l'id de la route
     {
         $property=$this->repository->find($id);
 
@@ -96,6 +105,8 @@ class PropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $notification->notify($contact);
+
             $this->addFlash('success',$translator->trans('contact.success',[],'forms'));
             return $this->redirectToRoute('property.show',[
                 'id'=>$property->getId(),
