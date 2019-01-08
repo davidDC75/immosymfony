@@ -6,7 +6,7 @@ immosymfony.code-workspace
 /.env.local
 /.env.*.local
 /public/bundles/
-/var/
+/var/*
 /vendor/
 ###< symfony/framework-bundle ###
 
@@ -27,3 +27,6 @@ immosymfony.code-workspace
 ###> liip/imagine-bundle ###
 /public/media/cache/*
 ###< liip/imagine-bundle ###
+
+###> node_modules ###
+/node_modules/*
