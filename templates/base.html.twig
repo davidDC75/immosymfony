@@ -42,7 +42,7 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a href="{{ path('login') }}" class="nav-link">{% trans %}navbar.connect{% endtrans %}</a>
+                    <a href="{{ path('login') }}" class="nav-link {% if current_menu is defined and current_menu == 'login' %}active{% endif %}">{% trans %}navbar.connect{% endtrans %}</a>
                 </li>
             {% endif %}
             </ul>
