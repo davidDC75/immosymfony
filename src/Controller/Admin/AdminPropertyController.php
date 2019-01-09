@@ -52,7 +52,10 @@ class AdminPropertyController extends AbstractController
             $request->query->getInt('page', 1), // Récupère $_GET['page'] et converti en int. Par défaut 1
             10 // limit
         );
-        return $this->render('admin/property/index.html.twig',compact('properties'));
+        return $this->render('admin/property/index.html.twig',[
+            'current_menu' => 'administration',
+            'properties'   => $properties
+        ]);
     }
 
     /**
@@ -75,8 +78,9 @@ class AdminPropertyController extends AbstractController
         }
 
         return $this->render('admin/property/new.html.twig',[
-            'property'=>$property,
-            'form'=>$form->createView()
+            'current_menu' => 'administration',
+            'property'     => $property,
+            'form'         => $form->createView()
         ]);
     }
 
@@ -98,8 +102,9 @@ class AdminPropertyController extends AbstractController
             return $this->redirectToRoute('admin.property.index');
         }
         return $this->render('admin/property/edit.html.twig',[
-            'property'=>$property,
-            'form'=>$form->createView()
+            'current_menu' => 'administration',
+            'property'     => $property,
+            'form'         => $form->createView()
         ]);
     }
 

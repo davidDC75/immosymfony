@@ -68,7 +68,7 @@ admin:
     #Pour administrer les options
     option:
         index:
-            title: "Gérer l es options"
+            title: "Gérer les options"
             field:
                 id: "ID"
                 name: "Nom"

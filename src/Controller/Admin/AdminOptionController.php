@@ -28,7 +28,10 @@ class AdminOptionController extends AbstractController
             $request->query->getInt('page', 1), // Récupère $_GET['page'] et converti en int. Par défaut 1
             10 // limit
         );
-        return $this->render('admin/option/index.html.twig', ['options' => $options]);
+        return $this->render('admin/option/index.html.twig', [
+            'current_menu' => 'administration',
+            'options'      => $options
+        ]);
     }
 
     /**
@@ -49,8 +52,9 @@ class AdminOptionController extends AbstractController
         }
 
         return $this->render('admin/option/new.html.twig', [
-            'option' => $option,
-            'form' => $form->createView(),
+            'current_menu' => 'administration',
+            'option'       => $option,
+            'form'         => $form->createView()
         ]);
     }
 
@@ -69,8 +73,9 @@ class AdminOptionController extends AbstractController
         }
 
         return $this->render('admin/option/edit.html.twig', [
-            'option' => $option,
-            'form' => $form->createView(),
+            'current_menu' => 'administration',
+            'option'       => $option,
+            'form'         => $form->createView()
         ]);
     }
 
