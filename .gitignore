@@ -2,6 +2,7 @@
 immosymfony.code-workspace
 .editorconfig
 .vscode/
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.*.local
@@ -28,5 +29,11 @@ immosymfony.code-workspace
 /public/media/cache/*
 ###< liip/imagine-bundle ###
 
-###> node_modules ###
+###> node_modules and npm###
 /node_modules/*
+/npm-debug.log
+
+###> Encore webpack files ###
+/public/build/entrypoints.json
+/public/build/manifest.json
+

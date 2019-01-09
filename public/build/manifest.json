@@ -1,5 +1,0 @@
-{
-  "build/app.css": "http://immosymfony.web:8080/build/app.css",
-  "build/app.js": "http://immosymfony.web:8080/build/app.js",
-  "build/runtime.js": "http://immosymfony.web:8080/build/runtime.js"
-}
