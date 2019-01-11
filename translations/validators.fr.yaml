@@ -33,6 +33,7 @@ add.edit.property:
 
     image:
         format: "Seul les jpeg sont autorisés"
+        size: "La taille maximale de l'image est de 1Mo"
 
 add.edit.option:
     name:

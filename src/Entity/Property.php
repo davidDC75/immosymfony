@@ -1,16 +1,16 @@
 <?php
 namespace App\Entity;
 
+use App\Entity\Picture;
 use Cocur\Slugify\Slugify;
-use Doctrine\ORM\Mapping as ORM;
 
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *      fields="address",
  *      message="add.edit.property.address.unique"
  * )
- * @Vich\Uploadable
  */
 class Property
 {
@@ -154,29 +153,30 @@ class Property
     private $options;
 
     /**
-     * $imageFile
-     * @Assert\Image(
-     *      mimeTypes="image/jpeg",
-     *      mimeTypesMessage="add.edit.property.image.format"
-     * )
-     * @Vich\UploadableField(mapping="properties_image",fileNameProperty="filename")
-     *
-     * @var File|null
-     */
-    private $imageFile;
-
-    /**
-     * $filename
-     *
-     * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $filename;
-
-    /**
      * @ORM\Column(type="datetime",options={"default": "2010-01-01 00:00:00"})
      */
     private $updated_at;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="property", orphanRemoval=true, cascade={"persist"})
+     *
+     * @var Picture[]|ArrayCollection
+     */
+    private $pictures;
+
+    /**
+     * $pictureFiles
+     * @Assert\All({
+     *      @Assert\Image(
+     *          maxSize="1024k",
+     *          maxSizeMessage="add.edit.property.image.size",
+     *          mimeTypes={"image/jpeg","image/jpg"},
+     *          mimeTypesMessage="add.edit.property.image.format"
+     *      )
+     * })
+     * @var File
+     */
+    private $pictureFiles;
 
     /**
      * Constructeur
@@ -187,6 +187,7 @@ class Property
         $this->created_at=new \DateTime();
         $this->updated_at=new \DateTime();
         $this->options = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -396,62 +397,6 @@ class Property
         return $this;
     }
 
-    /**
-     * Get $imageFile
-     *
-     * @return  File|null
-     */
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * Set $imageFile
-     *
-     * @param  File|null  $imageFile
-     *
-     * @return  Property
-     */
-    public function setImageFile(?File $imageFile=null): Property
-    {
-        $this->imageFile = $imageFile;
-
-        // Only change the updated at if the file is really uploaded to avoir database updates.
-        // This is needed when the file should be set when loading the entity.
-        // https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/known_issues.md
-        if ($this->imageFile instanceof UploadedFile) {
-            $this->updated_at=new \Datetime('now');
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * Get $filename
-     *
-     * @return  string|null
-     */
-    public function getFilename(): ?string
-    {
-        return $this->filename;
-    }
-
-    /**
-     * Set $filename
-     *
-     * @param  string|null  $filename
-     *
-     * @return  Property
-     */
-    public function setFilename(?string $filename=null): Property
-    {
-        $this->filename = $filename;
-
-        return $this;
-    }
-
     public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updated_at;
@@ -461,6 +406,79 @@ class Property
     {
         $this->updated_at = $updated_at;
 
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * Renvoie la première picture d'une property
+     * Renvoie null si il n'y a pas de picture
+     *
+     * @return Picture|null
+     */
+    public function getPicture(): ?Picture
+    {
+        if ($this->pictures->isEmpty()) {
+            return null;
+        }
+
+        return $this->pictures->first();
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getProperty() === $this) {
+                $picture->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get $pictureFiles
+     *
+     * @return  mixed
+     */
+    public function getPictureFiles()
+    {
+        return $this->pictureFiles;
+    }
+
+    /**
+     *
+     * @param  mixed  $pictureFiles
+     *
+     * @return  Property
+     */
+    public function setPictureFiles($pictureFiles): self
+    {
+        foreach ($pictureFiles as $pictureFile) {
+            $picture=new Picture();
+            $picture->setImageFile($pictureFile);
+            $this->addPicture($picture);
+        }
+        $this->pictureFiles = $pictureFiles;
         return $this;
     }
 }

@@ -1,10 +1,11 @@
 <?php
 namespace App\Listener;
 
-use App\Entity\Property;
+use App\Entity\Picture;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Symfony\Component\HttpFoundation\File\File;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
@@ -62,7 +63,7 @@ class ImageCacheSubscriber implements EventSubscriber
     public function preRemove(LifecycleEventArgs $args)
     {
         $entity=$args->getEntity();
-        if (!$entity instanceof Property) // Si l'entité n'est pas une Property, on ne fait rien
+        if (!$entity instanceof Picture) // Si l'entité n'est pas une Picture, on ne fait rien
         {
             return;
         }
@@ -80,14 +81,16 @@ class ImageCacheSubscriber implements EventSubscriber
     {
         // dump($args->getEntity());
         // dump($args->getObject());
+
         $entity=$args->getEntity();
-        if (!$entity instanceof Property) // Si l'entité n'est pas une Property, on ne fait rien
+        if (!$entity instanceof Picture) // Si l'entité n'est pas une Picture, on ne fait rien
         {
             return;
         }
         // Sinon on supprimer l'ancienne miniature
-        if ($entity->getImageFile() instanceof UploadedFile) {
+        if ($entity->getImageFile() instanceof File) {
             $this->cacheManager->remove( $this->uploaderHelper->asset( $entity,'imageFile') );
         }
+
     }
 }

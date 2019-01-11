@@ -52,7 +52,11 @@ class PropertyType extends AbstractType
                 'multiple'=>true,
                 'required'=>false
             ])
-            ->add('imageFile',FileType::class,['label'=>'property.image','required'=>false])
+            ->add('pictureFiles',FileType::class,[
+                'label'=>'property.image',
+                'required'=>false,
+                'multiple'=>true
+            ])
             ->add('city',TextType::class,['label'=>'property.city'])
             ->add('address',TextType::class,['label'=>'property.address'])
             ->add('postal_code',IntegerType::class,['label'=>'property.postalCode'])

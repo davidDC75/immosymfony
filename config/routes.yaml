@@ -66,6 +66,13 @@ admin.option.delete:
         id: '[0-9]*'
     methods: DELETE
 
+# Administration des pictures
+admin.picture.delete:
+    path: /admin/picture/{id}
+    controller: App\Controller\Admin\AdminPictureController::delete
+    requirements:
+        id: '[0-9]*'
+    methods: DELETE
 
 
 

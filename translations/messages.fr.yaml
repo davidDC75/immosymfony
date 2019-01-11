@@ -50,6 +50,8 @@ admin:
             title: "Éditer %property.title%"
             h1: "Éditer le bien"
             submitbutton: "Éditer"
+            image:
+                alt: "Photo liée au bien"
         index:
             title: "Titre"
             action: "Action"
@@ -65,6 +67,11 @@ admin:
         deleteWarning: "Êtes-vous sûr de vouloir supprimer ce bien ?"
         addSuccess: "Bien ajouté avec succès."
         editSuccess: "Bien modifié avec succès"
+    #Pour administrer les pictures
+    picture:
+        deleteWarning: "Êtes-vous sûr de vouloir supprimer cette photo ?"
+        button:
+            delete: "Supprimer"
     #Pour administrer les options
     option:
         index:

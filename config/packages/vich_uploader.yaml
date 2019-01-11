@@ -7,7 +7,7 @@ vich_uploader:
     #        upload_destination: '%kernel.project_dir%/public/images/products'
 
     mappings:
-        properties_image:
-            uri_prefix: /images/properties
+        property_image:
+            uri_prefix: /media/properties
             upload_destination: '%kernel.project_dir%/public/images/properties'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
