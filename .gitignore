@@ -21,12 +21,10 @@ immosymfony.code-workspace
 ###< symfony/web-server-bundle ###
 
 ###< properties images public ###
-/public/images/properties/*
-#except empty.jpg
-!/public/images/properties/empty.jpg
+/media/images/properties/
 
 ###> liip/imagine-bundle ###
-/public/media/cache/*
+/public/media/cache/
 ###< liip/imagine-bundle ###
 
 ###> node_modules and npm###
