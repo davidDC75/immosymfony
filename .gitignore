@@ -21,7 +21,7 @@ immosymfony.code-workspace
 ###< symfony/web-server-bundle ###
 
 ###< properties images public ###
-/media/images/properties/
+/public/media/properties/
 
 ###> liip/imagine-bundle ###
 /public/media/cache/
