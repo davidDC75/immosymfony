@@ -14,6 +14,8 @@ property:
     sold.help: "Cochez cette case si le bien a été vendu"
     options: "Options"
     image: "Image"
+    latitude: "Latitude"
+    longitude: "Longitude"
     heattype:
         electric: "Électrique"
         gas: "Gaz"

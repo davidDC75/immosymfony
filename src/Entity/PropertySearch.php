@@ -35,6 +35,34 @@ class PropertySearch
      */
     private $options;
 
+    /**
+     * $distance
+     *
+     * @var integer|null
+     */
+    private $distance;
+
+    /**
+     * Latitude
+     *
+     * @var float|null
+     */
+    private $lat;
+
+    /**
+     * Longitude
+     *
+     * @var float|null
+     */
+    private $lng;
+
+    /**
+     * $address
+     *
+     * @var string|null
+     */
+    private $address;
+
     public function __construct()
     {
         $this->options=new ArrayCollection();
@@ -105,6 +133,102 @@ class PropertySearch
     public function setOptions(ArrayCollection $options)
     {
         $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * Get $distance
+     *
+     * @return  integer|null
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * Set $distance
+     *
+     * @param  integer|null  $distance  $distance
+     *
+     * @return  self
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return  float|null
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param  float|null  $lat  Latitude
+     *
+     * @return  self
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return  float|null
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param  float|null  $lng  Longitude
+     *
+     * @return  self
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
+        return $this;
+    }
+
+    /**
+     * Get $address
+     *
+     * @return  string|null
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set $address
+     *
+     * @param  string|null  $address  $address
+     *
+     * @return  self
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
 
         return $this;
     }

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -60,6 +61,8 @@ class PropertyType extends AbstractType
             ->add('city',TextType::class,['label'=>'property.city'])
             ->add('address',TextType::class,['label'=>'property.address'])
             ->add('postal_code',IntegerType::class,['label'=>'property.postalCode'])
+            ->add('lat',HiddenType::class,['label'=>'property.latitude'])
+            ->add('lng',HiddenType::class,['label'=>'property.longitude'])
             ->add('sold',CheckboxType::class,[
                 'label'=>'property.sold',
                 'help'=>'property.sold.help',

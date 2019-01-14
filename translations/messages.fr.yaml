@@ -26,9 +26,15 @@ property:
     index:
         see.all.property: "Tous nos biens"
         search:
-            maxPrice: Budget maximum
-            minSurface: Surface minimum
-            submitLabel: Rechercher
+            maxPrice: "Budget maximum"
+            minSurface: "Surface minimum"
+            submitLabel: "Rechercher"
+            distance:
+                label: "Distance"
+                10km: "10 km"
+                1000km: "1000 km"
+            address:
+                placeholder: "Adresse"
         image:
             alt: "Photo principale du bien"
             altNoPhoto: "Aucune photo n'a été donnée pour ce bien"
