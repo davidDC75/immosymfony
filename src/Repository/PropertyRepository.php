@@ -131,8 +131,11 @@ class PropertyRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             // On fait une jointure afin de récupérer les images.
+            /* Méthode pour faire une jointure avec les pictures (alias pics) et un select pour les récupèrer
+            Génère moins de requêtes SQL mais peut en revanche rapidement retourner beaucoup d'enregistrement
             ->select('p','pics')
             ->leftJoin('p.pictures','pics')
+            */
             ->where('p.sold = false');
     }
 }
