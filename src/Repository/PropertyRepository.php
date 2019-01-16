@@ -130,6 +130,9 @@ class PropertyRepository extends ServiceEntityRepository
     private function findVisibleQuery(): QueryBuilder
     {
         return $this->createQueryBuilder('p')
+            // On fait une jointure afin de récupérer les images.
+            ->select('p','pics')
+            ->leftJoin('p.pictures','pics')
             ->where('p.sold = false');
     }
 }
